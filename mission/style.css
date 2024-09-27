@@ -14,6 +14,29 @@ body {
     border: 1px solid black;
 }
 
+button {
+    background-color: #333;
+    color: white;
+}
+
+body.dark {
+    background-color: #333;
+    color: white;
+}
+
+body.dark .content {
+    border: 1px solid white;
+}
+
+body.dark header p {
+    color: lightseagreen;
+}
+
+body.dark button {
+    background-color: white;
+    color: black;
+}
+
 header {
     text-align: center;
     text-transform: uppercase;
