@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: wheat;
+}
+
+header {
+    background-color: skyblue;
+    text-align: center;
+    padding: .7rem;
+}
+
+header h1 {
+    margin: 0;
+    padding-top: .5rem;
+    text-shadow: .25rem .25rem .1rem wheat;
+}
+
+main {
+    text-align: center;
+}
+
+.gallary {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.gallary img {
+    width: 100%;
+    margin: auto 0;
+    border: .6rem ridge snow;
+    box-shadow: 1rem .5rem .75rem skyblue;
+}
+
+footer {
+    text-align: center;
+}
+
+@media (min-width : 501px) {
+    .gallary{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width : 901px) {
+    .gallary{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
