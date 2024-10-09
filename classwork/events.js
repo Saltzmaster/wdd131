@@ -1,6 +1,7 @@
 let tasks = [];
 
 function taskTemplate(taskItem) {
+    // the template for each li
     return `<li ${taskItem.completed ? 'class="strike"' : ""}>
    <p>${taskItem.detail}</p>
    <div>
@@ -80,5 +81,10 @@ const ul = event.target.closest('li')
 // Add your event listeners here
 document.querySelector('#submitTask').addEventListener('click', newTask);
 document.querySelector('#todoList').addEventListener('click', manageTasks);
+document.querySelector('#todo').addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    newTask();
+  }
+})
 // We need to attach listeners to the submit button and the list. Listen for a click, call the 'newTask' function on submit and call the 'manageTasks' function if either of the icons are clicked in the list of tasks.
 renderTasks(tasks);
