@@ -16,8 +16,59 @@ header h1 {
     text-shadow: .25rem .25rem .1rem wheat;
 }
 
+.menu {
+    background-color: black;
+    color: white;
+    padding: .2rem .3rem;
+    margin: 1.25%;
+}
+
+.nav {
+    display: none;
+}
+
+.nav.show {
+    display: contents;
+}
+
+.nav a{
+    text-decoration: none;
+    color: black;
+}
+
+.nav a:hover {
+    background-color: navy;
+    color: wheat;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
 main {
     text-align: center;
+}
+
+.expand {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .75);
+    justify-content: center;
+}
+
+.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 3rem;
+    margin: 1rem;
+    cursor: pointer;
+}
+
+.expand img {
+    height: 100%;
+    padding: 5%;
 }
 
 .gallary {
@@ -40,10 +91,23 @@ footer {
     .gallary{
         grid-template-columns: 1fr 1fr;
     }
+
+    .menu{
+        display: none;
+    }
+
+    .nav {
+        display: contents;
+    }
 }
 
 @media (min-width : 901px) {
     .gallary{
         grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .nav li {
+        display: inline-block;
+        margin: 0 8%;
     }
 }
