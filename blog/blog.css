@@ -40,7 +40,18 @@ h1, h2 {
     height: 65%;
 }
 
+.left {
+    border-right: 1px solid #EFC69B;
+    text-align: right;
+    margin-right: 1em;
+    padding-right: 1em;
+}
+
+.middle p, h2 {
+    text-align: left;
+}
+
 #filter {
-    margin: 1em;
-    border: 3px black solid;
+    margin: 1em 2em;
+    border: 2px  #EFC69B solid;
 }
