@@ -1,0 +1,111 @@
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+  }
+  
+  main {
+    display: grid;
+    gap: 20%;
+    align-items: center;
+  }
+  
+  form {
+    margin-left: 15%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: auto;
+  }
+  
+  .front, .back {
+    background-color: #e0e0e0;
+    width: 350px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .front {
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .front img {
+    justify-self: flex-end;
+  }
+  
+  .card-number {
+    grid-column: span 2;
+  }
+  
+  .back {
+    z-index: 1;
+    margin: 20% 20% -10% -65%;
+    /* top right bottom left */
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+  
+  fieldset {
+    border: none;
+    margin-bottom: 10px;
+  }
+  
+  label {
+    font-size: 12px;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  #month, #year {
+    width: 48px;
+    margin-right: 5px;
+  }
+  
+  p {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .cvc {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .stripe {
+    background-color: darkslategray;
+    grid-column: span 2;
+  }
+  
+  .submit {
+    justify-self: center;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 320px;
+    text-align: center;
+  }
+  
+  .submit:hover {
+    background-color: #555;
+  }
+  
