@@ -2,6 +2,12 @@ const ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMWEwNjYwNDNiYWU2ZDkxMmE0Y
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
+const popularMoviesButton = document.getElementById('popularTab');
+const popularTVShowsButton = document.getElementById('newTab');
+const searchButton = document.getElementById('searchButton');
+const searchBar = document.getElementById('searchBar');
+const moviesContainer = document.getElementById('movies');
+
 // Fetch popular movies
 async function fetchPopularMovies() {
     try {
@@ -20,9 +26,61 @@ async function fetchPopularMovies() {
     }
 }
 
+// Fetch popular TV shows
+async function fetchPopularTVShows() {
+    try {
+        const response = await fetch(`${BASE_URL}/tv/popular?language=en-US&page=1`, {
+            headers: {
+                Authorization: `Bearer ${ACCESS_TOKEN}`,
+                'Content-Type': 'application/json;charset=utf-8',
+            },
+        });
+
+        if (!response.ok) throw new Error(`Error: ${response.status}`);
+        const data = await response.json();
+        displayTVShows(data.results);
+    } catch (error) {
+        console.error('Error fetching popular TV shows:', error);
+    }
+}
+
+// Search for movies
+async function searchMovies(query) {
+    if (!query) {
+        alert('Please enter a search term!');
+        return;
+    }
+
+    try {
+        // Clear active styles from category buttons
+        popularMoviesButton.classList.remove('active');
+        popularTVShowsButton.classList.remove('active');
+
+        // Fetch search results
+        const response = await fetch(`${BASE_URL}/search/movie?query=${encodeURIComponent(query)}`, {
+            headers: {
+                Authorization: `Bearer ${ACCESS_TOKEN}`,
+                'Content-Type': 'application/json;charset=utf-8',
+            },
+        });
+
+        if (!response.ok) throw new Error(`Error: ${response.status}`);
+        const data = await response.json();
+
+        if (data.results.length === 0) {
+            alert('No results found. Try a different search term.');
+        } else {
+            displayMovies(data.results);
+        }
+    } catch (error) {
+        console.error('Error searching movies:', error);
+    }
+
+    searchBar.value = ''; // Clear search bar after search
+}
+
 // Display movies in the grid
 function displayMovies(movies) {
-    const moviesContainer = document.getElementById('movies');
     moviesContainer.innerHTML = '';
 
     movies.forEach(movie => {
@@ -32,7 +90,7 @@ function displayMovies(movies) {
         movieCard.innerHTML = `
             <img src="${IMG_BASE_URL + movie.poster_path}" alt="${movie.title} Poster">
             <h3>${movie.title}</h3>
-            <p>${movie.release_date.split('-')[0]}</p>
+            <p>${movie.release_date?.split('-')[0] || 'N/A'}</p>
             <button onclick="addToWatchlist('${movie.id}', '${movie.title}', '${movie.poster_path}')">Add to Watchlist</button>
         `;
 
@@ -40,19 +98,64 @@ function displayMovies(movies) {
     });
 }
 
-// Add a movie to the watchlist
-function addToWatchlist(id, title, posterPath) {
-    const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
-    const movie = { id, title, posterPath };
+// Display TV shows in the grid
+function displayTVShows(tvShows) {
+    moviesContainer.innerHTML = '';
 
-    if (!watchlist.some(item => item.id === id)) {
-        watchlist.push(movie);
-        localStorage.setItem('watchlist', JSON.stringify(watchlist));
-        alert('Movie successfully added to your watchlist!');
-    } else {
-        alert('This movie is already in your watchlist.');
+    tvShows.forEach(show => {
+        const showCard = document.createElement('div');
+        showCard.classList.add('movieCard');
+
+        showCard.innerHTML = `
+            <img src="${IMG_BASE_URL + show.poster_path}" alt="${show.name} Poster">
+            <h3>${show.name}</h3>
+            <p>${show.first_air_date?.split('-')[0] || 'N/A'}</p>
+            <button onclick="addToWatchlist('${show.id}', '${show.name}', '${show.poster_path}')">Add to Watchlist</button>
+        `;
+
+        moviesContainer.appendChild(showCard);
+    });
+}
+
+// Toggle category
+function toggleCategory(category) {
+    if (category === 'movies') {
+        popularMoviesButton.classList.add('active');
+        popularTVShowsButton.classList.remove('active');
+        fetchPopularMovies();
+    } else if (category === 'tvShows') {
+        popularTVShowsButton.classList.add('active');
+        popularMoviesButton.classList.remove('active');
+        fetchPopularTVShows();
     }
 }
 
-// Initialize the page
-document.addEventListener('DOMContentLoaded', fetchPopularMovies);
+// Add to watchlist
+function addToWatchlist(id, title, posterPath) {
+    const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+
+    if (watchlist.some(item => item.id === id)) {
+        alert(`${title} is already in your watchlist.`);
+        return;
+    }
+
+    watchlist.push({ id, title, posterPath });
+    localStorage.setItem('watchlist', JSON.stringify(watchlist));
+
+    alert(`${title} has been successfully added to your watchlist.`);
+}
+
+// Event listeners
+popularMoviesButton.addEventListener('click', () => toggleCategory('movies'));
+popularTVShowsButton.addEventListener('click', () => toggleCategory('tvShows'));
+searchButton.addEventListener('click', () => searchMovies(searchBar.value.trim()));
+searchBar.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        searchMovies(searchBar.value.trim());
+    }
+});
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    fetchPopularMovies(); // Default to popular movies
+});
