@@ -1,0 +1,212 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #000022;
+    color: #D6D5C9;
+}
+
+header {
+    background-color: #001242;
+    color: #BFAB25;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header .logo {
+    max-width: 150px;
+}
+
+nav a {
+    color: #D6D5C9;
+    margin: 0 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #BFAB25;
+}
+
+#hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(to bottom right, #001242, #002867);
+    color: #FFF;
+}
+
+#hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+#hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+#hero #explore {
+    background-color: #BFAB25;
+    color: #001242;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+#hero #explore:hover {
+    background-color: #FFD700;
+    transform: scale(1.05);
+}
+
+#search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background-color: #001242;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    gap: 1rem;
+}
+
+#searchBar {
+    width: 60%;
+    max-width: 400px;
+    padding: 0.8rem;
+    border: 1px solid #BFAB25;
+    border-radius: 25px;
+    font-size: 1rem;
+    color: #001242;
+}
+
+#searchButton {
+    background-color: #BFAB25;
+    color: #001242;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+#searchButton:hover {
+    background-color: #FFD700;
+    transform: scale(1.1);
+}
+
+button.add-watchlist {
+    background-color: #BFAB25;
+    color: #001242;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+button.add-watchlist:hover {
+    background-color: #FFD700;
+    transform: scale(1.05);
+}
+
+#grid {
+    padding: 2rem;
+    background-color: #001242;
+}
+
+#grid h2 {
+    color: #D6D5C9;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #BFAB25;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+#movies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.movieCard {
+    background-color: #002867;
+    border: 1px solid #BFAB25;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.movieCard:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.movieCard img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #BFAB25;
+}
+
+.movieCard h3 {
+    color: #D6D5C9;
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+.movieCard p {
+    font-size: 0.9rem;
+    color: #A9A9A9;
+    padding: 0 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.movieCard button {
+    background-color: #BFAB25;
+    color: #001242;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    margin: 0.5rem auto 1rem;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.movieCard button:hover {
+    background-color: #FFD700;
+    transform: scale(1.05);
+}
+
+
+footer {
+    text-align: center;
+    background-color: #001242;
+    color: #D6D5C9;
+    padding: 1em;
+    margin-top: 2rem;
+}
+
+footer .tmdb-logo {
+    margin: 1em auto 0;
+    width: 200px;
+    max-width: 100%;
+    display: block;
+}

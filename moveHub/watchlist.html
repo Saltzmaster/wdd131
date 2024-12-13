@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TheMovieHub</title>
+    <title>TheMovieHub - Watchlist</title>
     <link rel="stylesheet" href="style.css" />
+    <script defer src="watchlist.js"></script>
   </head>
   <body>
     <header>
@@ -16,24 +17,12 @@
     </header>
 
     <main>
-      <section id="hero">
-        <h1>Welcome to TheMovieHub</h1>
-        <p>Your gateway to movie discovery</p>
-        <button id="explore">Explore Movies</button>
-      </section>
-
-      <section id="search">
-        <input
-          type="text"
-          id="searchBar"
-          placeholder="Search for a movie or genre..."
-        />
-        <button id="searchButton">Search</button>
-      </section>
-
-      <section id="grid">
-        <h2>Popular Movies</h2>
-        <div id="movies"></div>
+      <section id="watchlist">
+        <h2>Your Watchlist</h2>
+        <p id="emptyWatchlist">
+          Your Watchlist is empty. Start adding movies now!
+        </p>
+        <div id="watchlistContainer"></div>
       </section>
     </main>
 
