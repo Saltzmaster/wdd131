@@ -1,4 +1,4 @@
-const ACCESS_TOKEN = 'YOUR_ACCESS_TOKEN';
+const ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMWEwNjYwNDNiYWU2ZDkxMmE0YjRmNjA3NWEzYmQ5OSIsIm5iZiI6MTczNDA1MDE4OC45OCwic3ViIjoiNjc1YjgxOGNmOTMyZGM3NzE2MjZjOWMwIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.0oZfxn-bJDovmtn54ExXzgEzFXjMnmrdE7y02X0mA3I';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
