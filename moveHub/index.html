@@ -3,6 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Ty Saltzgiver" />
+    <meta name="description" content="TheMovieHub - Final Project - WDD 131" />
+
+    <meta property="og:title" content="TheMovieHub" />
+    <meta property="og:description" content="The movie discovery platform" />
+    <meta
+      property="og:image"
+      content="https://saltzmaster.github.io/wdd131/moveHub/TheMovieHub.webp"
+    />
+    <meta
+      property="og:url"
+      content="https://saltzmaster.github.io/wdd131/moveHub/index.html"
+    />
+
     <title>TheMovieHub</title>
     <link rel="shortcut icon" href="TheMovieHub.ico" type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
@@ -20,7 +34,9 @@
       <section id="hero">
         <h1>Welcome to TheMovieHub</h1>
         <p>Your gateway to movie discovery</p>
-        <button id="explore">Explore Movies</button>
+        <a href="#grid">
+          <button id="explore">Explore Movies</button>
+        </a>
       </section>
 
       <section id="search">
@@ -39,6 +55,13 @@
         </div>
         <div id="movies"></div>
       </section>
+
+      <div id="alert" class="hidden">
+        <div class="alertBox">
+          <p id="alertMessage"></p>
+          <button id="closeAlert">OK</button>
+        </div>
+      </div>
     </main>
 
     <footer>

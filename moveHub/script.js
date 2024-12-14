@@ -91,12 +91,24 @@ function displayMovies(movies) {
             <img src="${IMG_BASE_URL + movie.poster_path}" alt="${movie.title} Poster">
             <h3>${movie.title}</h3>
             <p>${movie.release_date?.split('-')[0] || 'N/A'}</p>
-            <button onclick="addToWatchlist('${movie.id}', '${movie.title}', '${movie.poster_path}')">Add to Watchlist</button>
+            <button class="watchlistButton" data-id="${movie.id}" data-title="${movie.title}" data-poster="${movie.poster_path}">Add to Watchlist</button>
         `;
 
         moviesContainer.appendChild(movieCard);
     });
+
+    // Add event listeners to dynamically generated buttons
+    const watchlistButtons = document.querySelectorAll('.watchlistButton');
+    watchlistButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.getAttribute('data-id');
+            const title = button.getAttribute('data-title');
+            const posterPath = button.getAttribute('data-poster');
+            addToWatchlist(id, title, posterPath);
+        });
+    });
 }
+
 
 // Display TV shows in the grid
 function displayTVShows(tvShows) {
@@ -110,12 +122,24 @@ function displayTVShows(tvShows) {
             <img src="${IMG_BASE_URL + show.poster_path}" alt="${show.name} Poster">
             <h3>${show.name}</h3>
             <p>${show.first_air_date?.split('-')[0] || 'N/A'}</p>
-            <button onclick="addToWatchlist('${show.id}', '${show.name}', '${show.poster_path}')">Add to Watchlist</button>
+            <button class="watchlistButton" data-id="${show.id}" data-title="${show.name}" data-poster="${show.poster_path}">Add to Watchlist</button>
         `;
 
         moviesContainer.appendChild(showCard);
     });
+
+    // Add event listeners to dynamically generated buttons
+    const watchlistButtons = document.querySelectorAll('.watchlistButton');
+    watchlistButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.getAttribute('data-id');
+            const title = button.getAttribute('data-title');
+            const posterPath = button.getAttribute('data-poster');
+            addToWatchlist(id, title, posterPath);
+        });
+    });
 }
+
 
 // Toggle category
 function toggleCategory(category) {
@@ -135,15 +159,27 @@ function addToWatchlist(id, title, posterPath) {
     const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
 
     if (watchlist.some(item => item.id === id)) {
-        alert(`${title} is already in your watchlist.`);
-        return;
+        showAlert(`${title} is already in your watchlist!`);
+    } else {
+        watchlist.push({ id, title, posterPath });
+        localStorage.setItem('watchlist', JSON.stringify(watchlist));
+        showAlert(`${title} has been added to your watchlist!`);
     }
-
-    watchlist.push({ id, title, posterPath });
-    localStorage.setItem('watchlist', JSON.stringify(watchlist));
-
-    alert(`${title} has been successfully added to your watchlist.`);
 }
+
+// Alert message
+function showAlert(message) {
+    const alertBox = document.getElementById('alert');
+    const alertMessage = document.getElementById('alertMessage');
+    alertMessage.textContent = message;
+    alertBox.classList.add('visible');
+}
+
+document.getElementById('closeAlert').addEventListener('click', () => {
+    const alertBox = document.getElementById('alert');
+    alertBox.classList.remove('visible');
+});
+
 
 // Event listeners
 popularMoviesButton.addEventListener('click', () => toggleCategory('movies'));
